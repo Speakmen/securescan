@@ -1,0 +1,1372 @@
+{
+  "chain": "bsc",
+  "count": 8,
+  "results": {
+    "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": {
+      "contract": {
+        "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+        "chain": "bsc",
+        "symbol": "Cake",
+        "name": "PancakeSwap Token",
+        "decimals": 18,
+        "total_supply": "4618112383751051201610995531",
+        "is_contract": true,
+        "code_size": 7285,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        },
+        {
+          "code": 5006,
+          "severity": "high",
+          "category": "权限控制",
+          "description": "Owner可铸币，存在通胀风险",
+          "evidence": "检测到mint函数"
+        }
+      ],
+      "risk_score": 10,
+      "risk_level": "medium",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 20,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": true,
+        "owner_centralized": true,
+        "reasons": [
+          "存在mint函数，owner可铸币",
+          "Owner权限过大，可铸币/拉黑",
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership",
+          "signature": "renounceOwnership()"
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership",
+          "signature": "transferOwnership(address)"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "4300060c",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "f1127ed8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65424550",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "20606b70",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "5c19a95c",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "6b706f69",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "c3cda520",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "893d20e8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "6543414b",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616c6c65",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "8da5cb5b",
+          "name": "Ownable",
+          "signature": "Ownable"
+        },
+        {
+          "selector": "6fcfff45",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "6b206e75",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "b4b5ea57",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "72656173",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74696f6e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "40c10f19",
+          "name": "mint",
+          "signature": "mint(address,uint256)"
+        },
+        {
+          "selector": "7ecebe00",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance",
+          "signature": "increaseAllowance(address,uint256)"
+        },
+        {
+          "selector": "65206265",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "e7a324dc",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65656473",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "587cde1e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "782d6fe1",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": {
+      "contract": {
+        "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+        "chain": "bsc",
+        "symbol": "ETH",
+        "name": "Ethereum Token",
+        "decimals": 18,
+        "total_supply": "504999999958821001704211",
+        "is_contract": true,
+        "code_size": 4413,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": true,
+        "reasons": [
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership",
+          "signature": "renounceOwnership()"
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership",
+          "signature": "transferOwnership(address)"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "65424550",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "42966c68",
+          "name": "burn",
+          "signature": "burn(uint256)"
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "43000510",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "893d20e8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "d28d8852",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616c6c65",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "8da5cb5b",
+          "name": "Ownable",
+          "signature": "Ownable"
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "72656173",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74696f6e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance",
+          "signature": "increaseAllowance(address,uint256)"
+        },
+        {
+          "selector": "b09f1266",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65206265",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "32424aa3",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65656473",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0x55d398326f99059fF775485246999027B3197955": {
+      "contract": {
+        "address": "0x55d398326f99059fF775485246999027B3197955",
+        "chain": "bsc",
+        "symbol": "USDT",
+        "name": "Tether USD",
+        "decimals": 18,
+        "total_supply": "9184992230153830666581611540",
+        "is_contract": true,
+        "code_size": 4413,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": true,
+        "reasons": [
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership",
+          "signature": "renounceOwnership()"
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership",
+          "signature": "transferOwnership(address)"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "65424550",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "42966c68",
+          "name": "burn",
+          "signature": "burn(uint256)"
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "43000510",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "893d20e8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "d28d8852",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616c6c65",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "8da5cb5b",
+          "name": "Ownable",
+          "signature": "Ownable"
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "72656173",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74696f6e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance",
+          "signature": "increaseAllowance(address,uint256)"
+        },
+        {
+          "selector": "b09f1266",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65206265",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "32424aa3",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65656473",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": {
+      "contract": {
+        "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+        "chain": "bsc",
+        "symbol": "BTCB",
+        "name": "BTCB Token",
+        "decimals": 18,
+        "total_supply": "65300969964784133902393",
+        "is_contract": true,
+        "code_size": 4413,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": true,
+        "reasons": [
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership",
+          "signature": "renounceOwnership()"
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership",
+          "signature": "transferOwnership(address)"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "65424550",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "42966c68",
+          "name": "burn",
+          "signature": "burn(uint256)"
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "43000510",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "893d20e8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "d28d8852",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616c6c65",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "8da5cb5b",
+          "name": "Ownable",
+          "signature": "Ownable"
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "72656173",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74696f6e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance",
+          "signature": "increaseAllowance(address,uint256)"
+        },
+        {
+          "selector": "b09f1266",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65206265",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "32424aa3",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65656473",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d": {
+      "contract": {
+        "address": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+        "chain": "bsc",
+        "symbol": "USDC",
+        "name": "USD Coin",
+        "decimals": 18,
+        "total_supply": "1588999878439803987446539541",
+        "is_contract": true,
+        "code_size": 1596,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        },
+        {
+          "code": 4004,
+          "severity": "medium",
+          "category": "可升级性",
+          "description": "可能是可升级代理合约，逻辑可被替换",
+          "evidence": "检测到代理合约特征函数"
+        }
+      ],
+      "risk_score": 4,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "可能是可升级代理合约，逻辑可被替换"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "8f283970",
+          "name": "changeAdmin",
+          "signature": "changeAdmin(address)"
+        },
+        {
+          "selector": "3659cfe6",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "5c60da1b",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "f851a440",
+          "name": "admin",
+          "signature": "admin()"
+        },
+        {
+          "selector": "4f1ef286",
+          "name": "upgradeToAndCall",
+          "signature": "upgradeToAndCall(address,bytes)"
+        },
+        {
+          "selector": "6f6e7472",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616e6e6f",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "43000604",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74547261",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "b6e8ee11",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "6b20746f",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": {
+      "contract": {
+        "address": "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
+        "chain": "bsc",
+        "symbol": "DOGE",
+        "name": "Dogecoin",
+        "decimals": 8,
+        "total_supply": "256399999999999998",
+        "is_contract": true,
+        "code_size": 1596,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        },
+        {
+          "code": 4004,
+          "severity": "medium",
+          "category": "可升级性",
+          "description": "可能是可升级代理合约，逻辑可被替换",
+          "evidence": "检测到代理合约特征函数"
+        }
+      ],
+      "risk_score": 4,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "可能是可升级代理合约，逻辑可被替换"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "8f283970",
+          "name": "changeAdmin",
+          "signature": "changeAdmin(address)"
+        },
+        {
+          "selector": "3659cfe6",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "5c60da1b",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "f851a440",
+          "name": "admin",
+          "signature": "admin()"
+        },
+        {
+          "selector": "4f1ef286",
+          "name": "upgradeToAndCall",
+          "signature": "upgradeToAndCall(address,bytes)"
+        },
+        {
+          "selector": "6f6e7472",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616e6e6f",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "43000604",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74547261",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "b6e8ee11",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "6b20746f",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c": {
+      "contract": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "chain": "bsc",
+        "symbol": "WBNB",
+        "name": "Wrapped BNB",
+        "decimals": 18,
+        "total_supply": "1733442257154731999980804",
+        "is_contract": true,
+        "code_size": 3124,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "d0e30db0",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "2e1a7d4d",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    },
+    "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56": {
+      "contract": {
+        "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+        "chain": "bsc",
+        "symbol": "BUSD",
+        "name": "BUSD Token",
+        "decimals": 18,
+        "total_supply": "283188732471960898956126663",
+        "is_contract": true,
+        "code_size": 4413,
+        "deployer": "",
+        "deploy_timestamp": 0,
+        "contract_age_days": 0,
+        "is_verified": false,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 7001,
+          "severity": "info",
+          "category": "标准符合性",
+          "description": "符合ERC20标准",
+          "evidence": "实现了ERC20核心方法"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 10,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 5.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": true,
+        "reasons": [
+          "存在交易税设置函数"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "selector": "313ce567",
+          "name": "decimals",
+          "signature": "decimals()"
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership",
+          "signature": "renounceOwnership()"
+        },
+        {
+          "selector": "06fdde03",
+          "name": "name",
+          "signature": "name()"
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership",
+          "signature": "transferOwnership(address)"
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "totalFees",
+          "signature": "totalFees()"
+        },
+        {
+          "selector": "65424550",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "95d89b41",
+          "name": "symbol",
+          "signature": "symbol()"
+        },
+        {
+          "selector": "42966c68",
+          "name": "burn",
+          "signature": "burn(uint256)"
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "ffffffff",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "selector": "43000510",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "893d20e8",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "d28d8852",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "616c6c65",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "8da5cb5b",
+          "name": "Ownable",
+          "signature": "Ownable"
+        },
+        {
+          "selector": "dd62ed3e",
+          "name": "allowance",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "selector": "72656173",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "74696f6e",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "18160ddd",
+          "name": "totalSupply",
+          "signature": "totalSupply()"
+        },
+        {
+          "selector": "70a08231",
+          "name": "balanceOf",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance",
+          "signature": "increaseAllowance(address,uint256)"
+        },
+        {
+          "selector": "b09f1266",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65206265",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "32424aa3",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "65656473",
+          "name": "",
+          "signature": ""
+        },
+        {
+          "selector": "c4a11628",
+          "name": "",
+          "signature": ""
+        }
+      ],
+      "holders_count": 0,
+      "volume_24h": 0.0
+    }
+  },
+  "timestamp": 1782149122
+}
