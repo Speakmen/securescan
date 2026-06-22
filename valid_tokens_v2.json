@@ -1,0 +1,23 @@
+[
+  {
+    "symbol": "USDT",
+    "address": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+    "name": "Tether USD",
+    "holders": 74562760,
+    "trx_count": 3450814305
+  },
+  {
+    "symbol": "WIN",
+    "address": "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7",
+    "name": "WINkLink",
+    "holders": 809057,
+    "trx_count": 14193395
+  },
+  {
+    "symbol": "S-USDT-TRX",
+    "address": "TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE",
+    "name": "SUNSWAP-USDT-TRX",
+    "holders": 36175,
+    "trx_count": 16207510
+  }
+]

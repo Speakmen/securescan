@@ -1,0 +1,561 @@
+{
+  "chain": "bsc",
+  "total": 8,
+  "success": 8,
+  "failed": 0,
+  "average_score": 75.0,
+  "results": [
+    {
+      "contract_address": "0x55d398326f99059fF775485246999027B3197955",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "Tether USD",
+        "token_symbol": "USDT",
+        "token_decimals": 18,
+        "total_supply": "9184992230153830666581611540",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 4413,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 76,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 1,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:05Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "USD Coin",
+        "token_symbol": "USDC",
+        "token_decimals": 18,
+        "total_supply": "1588999878439803987446539541",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 1596,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 84,
+        "risk_level": "safe",
+        "risk_counts": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "PROXY_CONTRACT_POSSIBLE",
+            "severity": "medium",
+            "category": "可升级性",
+            "title": "PROXY_CONTRACT_POSSIBLE",
+            "description": "检测到多个DELEGATECALL操作码特征，可能是可升级代理合约",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4004
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:10Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "BUSD Token",
+        "token_symbol": "BUSD",
+        "token_decimals": 18,
+        "total_supply": "283188732471960898956126663",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 4413,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 76,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 1,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:12Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "PancakeSwap Token",
+        "token_symbol": "Cake",
+        "token_decimals": 18,
+        "total_supply": "4618112383751051201610995531",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 7285,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 68,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "PROXY_CONTRACT_POSSIBLE",
+            "severity": "medium",
+            "category": "可升级性",
+            "title": "PROXY_CONTRACT_POSSIBLE",
+            "description": "检测到多个DELEGATECALL操作码特征，可能是可升级代理合约",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4004
+          },
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:15Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "Wrapped BNB",
+        "token_symbol": "WBNB",
+        "token_decimals": 18,
+        "total_supply": "1733728924649629617494151",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 3124,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 76,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 1,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:17Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0x1AF3F329e8BE154074D8769Dff1dcec827e61D5b",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "",
+        "token_symbol": "",
+        "token_decimals": 0,
+        "total_supply": "",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": false,
+        "is_verified": false,
+        "is_erc20": false,
+        "bytecode_size": 0,
+        "transaction_count": 0,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 68,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 1,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "risks": [
+          {
+            "risk_code": "NOT_A_CONTRACT",
+            "severity": "critical",
+            "category": "基本信息",
+            "title": "NOT_A_CONTRACT",
+            "description": "该地址不是智能合约",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:21Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "Ethereum Token",
+        "token_symbol": "ETH",
+        "token_decimals": 18,
+        "total_supply": "504999999958821001704211",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 4413,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 76,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 1,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:21Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    },
+    {
+      "contract_address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+      "chain": "bsc",
+      "chain_id": 56,
+      "metadata": {
+        "contract_name": "",
+        "token_name": "BTCB Token",
+        "token_symbol": "BTCB",
+        "token_decimals": 18,
+        "total_supply": "65300969964784133902393",
+        "deployer": "",
+        "create_time": ""
+      },
+      "status": {
+        "is_contract": true,
+        "is_verified": false,
+        "is_erc20": true,
+        "bytecode_size": 4413,
+        "transaction_count": 1,
+        "holder_count": 0
+      },
+      "security": {
+        "overall_score": 76,
+        "risk_level": "low",
+        "risk_counts": {
+          "critical": 0,
+          "high": 1,
+          "medium": 1,
+          "low": 0,
+          "info": 1
+        },
+        "risks": [
+          {
+            "risk_code": "SELFDESTRUCT_POSSIBLE",
+            "severity": "high",
+            "category": "风险特征",
+            "title": "SELFDESTRUCT_POSSIBLE",
+            "description": "检测到SELFDESTRUCT操作码特征，存在自毁风险",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 4005
+          },
+          {
+            "risk_code": "VERIFICATION_UNAVAILABLE",
+            "severity": "medium",
+            "category": "信息透明度",
+            "title": "VERIFICATION_UNAVAILABLE",
+            "description": "BSC区块浏览器API受限，无法验证源代码状态",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 1002
+          },
+          {
+            "risk_code": "ERC20_COMPLIANT",
+            "severity": "info",
+            "category": "标准符合性",
+            "title": "ERC20_COMPLIANT",
+            "description": "符合ERC20标准接口",
+            "suggestion": "",
+            "confidence": 0.8,
+            "numeric_code": 7001
+          }
+        ]
+      },
+      "meta": {
+        "scan_time": "2026-06-22T16:41:24Z",
+        "scanner_version": "4.0",
+        "scanner_type": "agent-first"
+      }
+    }
+  ],
+  "errors": [],
+  "scan_time": "2026-06-22T16:41:27Z"
+}

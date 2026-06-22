@@ -1,0 +1,189 @@
+[
+  {
+    "contract_address": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+    "contract_name": "TetherToken",
+    "compiler_version": "tron-0.4.25_Odyssey_v3.2.3",
+    "is_verified": true,
+    "create_time": "2019-04-16 15:43:48",
+    "trx_count": 3416739826,
+    "creator_address": "",
+    "token_name": "Tether USD",
+    "token_symbol": "USDT",
+    "total_supply": "89325337139722697",
+    "holders_count": 74558427,
+    "overall_score": 80,
+    "risk_level": "低风险 ✅",
+    "risks": [
+      {
+        "category": "信息透明度",
+        "severity": "info",
+        "title": "合约已验证源代码",
+        "description": "该合约已在Tronscan上验证源代码，可进行深度安全分析。",
+        "suggestion": "继续保持开源透明，建议定期进行安全审计。"
+      },
+      {
+        "category": "项目成熟度",
+        "severity": "info",
+        "title": "合约运行超过1年",
+        "description": "该合约已运行 7.2 年，经过了较长时间的市场检验。",
+        "suggestion": "相对成熟的项目，但仍需关注其他风险因素。"
+      },
+      {
+        "category": "流动性",
+        "severity": "info",
+        "title": "交易活跃度高",
+        "description": "该合约累计交易次数达 3416.7M 次，交易活跃，流动性较好。",
+        "suggestion": "交易活跃度是代币生命力的重要指标。"
+      },
+      {
+        "category": "安全漏洞",
+        "severity": "medium",
+        "title": "可能包含自毁函数",
+        "description": "检测到合约字节码中可能包含SELFDESTRUCT（自毁）操作码。如果存在自毁函数且权限控制不当，可能导致合约资金被盗或合约被销毁。",
+        "suggestion": "如果有源码，请详细检查自毁函数的调用条件和权限控制。"
+      },
+      {
+        "category": "可升级性",
+        "severity": "medium",
+        "title": "可能是可升级合约（代理模式）",
+        "description": "检测到合约包含 DELEGATECALL 操作码（出现5次），该合约可能是可升级的代理合约。这意味着项目方可以随时更改合约逻辑，投资者权益可能发生变化。",
+        "suggestion": "确认升级机制，是否有时间锁（Timelock）保护，升级权限归谁所有。"
+      }
+    ]
+  },
+  {
+    "contract_address": "TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR",
+    "contract_name": "TetherToken",
+    "compiler_version": "tron-0.4.25_Odyssey_v3.2.3",
+    "is_verified": true,
+    "create_time": "2019-04-16 15:43:48",
+    "trx_count": 3416739826,
+    "creator_address": "",
+    "token_name": "Tether USD",
+    "token_symbol": "USDT",
+    "total_supply": "89325337139722697",
+    "holders_count": 74558427,
+    "overall_score": 80,
+    "risk_level": "低风险 ✅",
+    "risks": [
+      {
+        "category": "信息透明度",
+        "severity": "info",
+        "title": "合约已验证源代码",
+        "description": "该合约已在Tronscan上验证源代码，可进行深度安全分析。",
+        "suggestion": "继续保持开源透明，建议定期进行安全审计。"
+      },
+      {
+        "category": "项目成熟度",
+        "severity": "info",
+        "title": "合约运行超过1年",
+        "description": "该合约已运行 7.2 年，经过了较长时间的市场检验。",
+        "suggestion": "相对成熟的项目，但仍需关注其他风险因素。"
+      },
+      {
+        "category": "流动性",
+        "severity": "info",
+        "title": "交易活跃度高",
+        "description": "该合约累计交易次数达 3416.7M 次，交易活跃，流动性较好。",
+        "suggestion": "交易活跃度是代币生命力的重要指标。"
+      },
+      {
+        "category": "安全漏洞",
+        "severity": "medium",
+        "title": "可能包含自毁函数",
+        "description": "检测到合约字节码中可能包含SELFDESTRUCT（自毁）操作码。如果存在自毁函数且权限控制不当，可能导致合约资金被盗或合约被销毁。",
+        "suggestion": "如果有源码，请详细检查自毁函数的调用条件和权限控制。"
+      },
+      {
+        "category": "可升级性",
+        "severity": "medium",
+        "title": "可能是可升级合约（代理模式）",
+        "description": "检测到合约包含 DELEGATECALL 操作码（出现3次），该合约可能是可升级的代理合约。这意味着项目方可以随时更改合约逻辑，投资者权益可能发生变化。",
+        "suggestion": "确认升级机制，是否有时间锁（Timelock）保护，升级权限归谁所有。"
+      }
+    ]
+  },
+  {
+    "contract_address": "TE2RzoSV3wK99w6J9UnnZ4vLfXYoxvRwP",
+    "contract_name": "TetherToken",
+    "compiler_version": "tron-0.4.25_Odyssey_v3.2.3",
+    "is_verified": true,
+    "create_time": "2019-04-16 15:43:48",
+    "trx_count": 3416739826,
+    "creator_address": "",
+    "token_name": "Tether USD",
+    "token_symbol": "USDT",
+    "total_supply": "89325337139722697",
+    "holders_count": 74558427,
+    "overall_score": 100,
+    "risk_level": "低风险 ✅",
+    "risks": [
+      {
+        "category": "信息透明度",
+        "severity": "info",
+        "title": "合约已验证源代码",
+        "description": "该合约已在Tronscan上验证源代码，可进行深度安全分析。",
+        "suggestion": "继续保持开源透明，建议定期进行安全审计。"
+      },
+      {
+        "category": "项目成熟度",
+        "severity": "info",
+        "title": "合约运行超过1年",
+        "description": "该合约已运行 7.2 年，经过了较长时间的市场检验。",
+        "suggestion": "相对成熟的项目，但仍需关注其他风险因素。"
+      },
+      {
+        "category": "流动性",
+        "severity": "info",
+        "title": "交易活跃度高",
+        "description": "该合约累计交易次数达 3416.7M 次，交易活跃，流动性较好。",
+        "suggestion": "交易活跃度是代币生命力的重要指标。"
+      }
+    ]
+  },
+  {
+    "contract_address": "TU3kjFuhtEo42tsCBtfYUAZxoqQ4yuSLQ5",
+    "contract_name": "TetherToken",
+    "compiler_version": "tron-0.4.25_Odyssey_v3.2.3",
+    "is_verified": true,
+    "create_time": "2019-04-16 15:43:48",
+    "trx_count": 3416739826,
+    "creator_address": "",
+    "token_name": "Tether USD",
+    "token_symbol": "USDT",
+    "total_supply": "89325337139722697",
+    "holders_count": 74559142,
+    "overall_score": 90,
+    "risk_level": "低风险 ✅",
+    "risks": [
+      {
+        "category": "信息透明度",
+        "severity": "info",
+        "title": "合约已验证源代码",
+        "description": "该合约已在Tronscan上验证源代码，可进行深度安全分析。",
+        "suggestion": "继续保持开源透明，建议定期进行安全审计。"
+      },
+      {
+        "category": "项目成熟度",
+        "severity": "info",
+        "title": "合约运行超过1年",
+        "description": "该合约已运行 7.2 年，经过了较长时间的市场检验。",
+        "suggestion": "相对成熟的项目，但仍需关注其他风险因素。"
+      },
+      {
+        "category": "流动性",
+        "severity": "info",
+        "title": "交易活跃度高",
+        "description": "该合约累计交易次数达 3416.7M 次，交易活跃，流动性较好。",
+        "suggestion": "交易活跃度是代币生命力的重要指标。"
+      },
+      {
+        "category": "可升级性",
+        "severity": "medium",
+        "title": "可能是可升级合约（代理模式）",
+        "description": "检测到合约包含 DELEGATECALL 操作码（出现20次），该合约可能是可升级的代理合约。这意味着项目方可以随时更改合约逻辑，投资者权益可能发生变化。",
+        "suggestion": "确认升级机制，是否有时间锁（Timelock）保护，升级权限归谁所有。"
+      }
+    ]
+  }
+]
