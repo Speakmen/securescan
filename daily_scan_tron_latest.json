@@ -11,7 +11,7 @@
       "code_size": 8,
       "deployer": "TWj3MpBtX628MaFzS8mF5Xw4ChPyVTaGFV",
       "deploy_timestamp": 1723767654,
-      "contract_age_days": 675,
+      "contract_age_days": 676,
       "is_verified": true,
       "is_proxy": false,
       "implementation": ""
@@ -29,7 +29,7 @@
         "severity": "info",
         "category": "合约年龄",
         "description": "合约部署超过1个月，相对成熟",
-        "evidence": "合约年龄: 675天"
+        "evidence": "合约年龄: 676天"
       },
       {
         "code": 2001,
@@ -107,7 +107,7 @@
       }
     ],
     "holders_count": 22431,
-    "volume_24h": 4664.918767
+    "volume_24h": 4664.787743
   },
   {
     "contract": {
@@ -146,7 +146,7 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $24,004,005"
+        "evidence": "24h交易量: $23,178,263"
       },
       {
         "code": 3004,
@@ -262,7 +262,7 @@
       }
     ],
     "holders_count": 441648,
-    "volume_24h": 24004004.57
+    "volume_24h": 23178263.32
   },
   {
     "contract": {
@@ -301,14 +301,14 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $8,715,152,607"
+        "evidence": "24h交易量: $13,366,116,205"
       },
       {
         "code": 3003,
         "severity": "info",
         "category": "持有者",
         "description": "持有者数量较多",
-        "evidence": "持有者: 27,473"
+        "evidence": "持有者: 27,474"
       }
     ],
     "risk_score": 0,
@@ -406,8 +406,8 @@
         "signature": ""
       }
     ],
-    "holders_count": 27473,
-    "volume_24h": 8715152606.93
+    "holders_count": 27474,
+    "volume_24h": 13366116204.95
   },
   {
     "contract": {
@@ -442,11 +442,11 @@
         "evidence": "合约年龄: 629天"
       },
       {
-        "code": 2002,
-        "severity": "medium",
+        "code": 2001,
+        "severity": "high",
         "category": "流动性",
-        "description": "24h交易量较低",
-        "evidence": "24h交易量: $22,495"
+        "description": "24h交易量极低",
+        "evidence": "24h交易量: $5,774"
       },
       {
         "code": 3002,
@@ -456,8 +456,8 @@
         "evidence": "持有者: 8,438"
       }
     ],
-    "risk_score": 8,
-    "risk_level": "safe",
+    "risk_score": 14,
+    "risk_level": "medium",
     "honeypot": {
       "is_honeypot": false,
       "confidence": 0,
@@ -517,7 +517,7 @@
       }
     ],
     "holders_count": 8438,
-    "volume_24h": 22495.08
+    "volume_24h": 5773.743982
   },
   {
     "contract": {
@@ -556,14 +556,14 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $16,626,792,355"
+        "evidence": "24h交易量: $26,197,466,647"
       },
       {
         "code": 3003,
         "severity": "info",
         "category": "持有者",
         "description": "持有者数量较多",
-        "evidence": "持有者: 43,080"
+        "evidence": "持有者: 43,079"
       }
     ],
     "risk_score": 0,
@@ -661,8 +661,8 @@
         "signature": ""
       }
     ],
-    "holders_count": 43080,
-    "volume_24h": 16626792355.44
+    "holders_count": 43079,
+    "volume_24h": 26197466646.56
   },
   {
     "contract": {
@@ -701,14 +701,14 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $43,529,186,670"
+        "evidence": "24h交易量: $59,930,270,400"
       },
       {
         "code": 3004,
         "severity": "info",
         "category": "持有者",
         "description": "持有者数量众多",
-        "evidence": "持有者: 74,560,344"
+        "evidence": "持有者: 74,550,795"
       }
     ],
     "risk_score": 0,
@@ -806,8 +806,8 @@
         "signature": ""
       }
     ],
-    "holders_count": 74560344,
-    "volume_24h": 43529186670.18
+    "holders_count": 74550795,
+    "volume_24h": 59930270400.39
   },
   {
     "contract": {
@@ -846,7 +846,7 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $56,802,525"
+        "evidence": "24h交易量: $62,478,888"
       },
       {
         "code": 3003,
@@ -902,7 +902,7 @@
       }
     ],
     "holders_count": 82762,
-    "volume_24h": 56802524.76
+    "volume_24h": 62478888.3
   },
   {
     "contract": {
@@ -948,7 +948,7 @@
         "severity": "info",
         "category": "流动性",
         "description": "24h交易量高，流动性好",
-        "evidence": "24h交易量: $1,929,153"
+        "evidence": "24h交易量: $3,114,610"
       },
       {
         "code": 3003,
@@ -1124,7 +1124,7 @@
       }
     ],
     "holders_count": 14480,
-    "volume_24h": 1929152.74
+    "volume_24h": 3114610.13
   },
   {
     "contract": {
@@ -1163,14 +1163,14 @@
         "severity": "medium",
         "category": "流动性",
         "description": "24h交易量较低",
-        "evidence": "24h交易量: $12,931"
+        "evidence": "24h交易量: $17,072"
       },
       {
         "code": 3004,
         "severity": "info",
         "category": "持有者",
         "description": "持有者数量众多",
-        "evidence": "持有者: 516,438"
+        "evidence": "持有者: 516,436"
       }
     ],
     "risk_score": 4,
@@ -1233,7 +1233,7 @@
         "signature": ""
       }
     ],
-    "holders_count": 516438,
-    "volume_24h": 12930.852608
+    "holders_count": 516436,
+    "volume_24h": 17071.792763
   }
 ]

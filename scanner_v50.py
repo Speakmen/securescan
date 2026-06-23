@@ -513,56 +513,83 @@ class TronScanner(BaseScanner):
     def __init__(self):
         super().__init__()
         self.base_url = "https://apilist.tronscan.org/api"
-        self.trc20_method = "0x313ce567"  # decimals()
     
     def scan(self, address: str) -> ScanResult:
         result = ScanResult(
             contract=ContractInfo(address=address, chain="tron")
         )
         
-        # 1. 获取合约基本信息
-        contract_info = self._get_contract_info(address)
-        if contract_info:
-            result.contract.symbol = contract_info.get("symbol", "")
-            result.contract.name = contract_info.get("name", "")
-            result.contract.decimals = int(contract_info.get("decimals", 18))
-            result.contract.total_supply = str(contract_info.get("total_supply", "0"))
-            result.contract.is_contract = True
-            result.contract.code_size = int(contract_info.get("code_size", 0))
-            result.contract.is_verified = contract_info.get("verified", False)
-            result.contract.deployer = contract_info.get("owner_address", "")
-            result.contract.deploy_timestamp = contract_info.get("date_created", 0)
-            
-            # 计算合约年龄
-            if result.contract.deploy_timestamp:
-                now = int(time.time())
-                result.contract.contract_age_days = (now - result.contract.deploy_timestamp) // 86400
+        # 1. 获取TRC20代币信息
+        token_info = self._get_token_info(address)
+        contract_info = self._get_contract_detail(address)
         
-        # 2. 获取字节码并分析
+        if token_info:
+            result.contract.symbol = token_info.get("symbol", "")
+            result.contract.name = token_info.get("name", "")
+            result.contract.decimals = int(token_info.get("decimals", 6))
+            result.contract.total_supply = str(token_info.get("total_supply", "0"))
+            result.contract.is_contract = True
+            result.holders_count = int(token_info.get("holders_count", 0))
+            result.volume_24h = float(token_info.get("volume24h", 0))
+            
+            # 合约创建时间
+            date_created = token_info.get("date_created", 0)
+            if date_created:
+                # 秒级时间戳
+                result.contract.deploy_timestamp = date_created
+                now = int(time.time())
+                result.contract.contract_age_days = (now - date_created) // 86400
+        
+        if contract_info:
+            # 验证状态：0=未验证, 1=待审核, 2=已验证
+            verify_status = contract_info.get("verify_status", 0)
+            result.contract.is_verified = (verify_status == 2)
+            result.contract.code_size = contract_info.get("code_size", 0)
+            
+            # 创建者
+            creator = contract_info.get("creator", {})
+            if creator:
+                result.contract.deployer = creator.get("address", "")
+            
+            # 代理合约
+            result.contract.is_proxy = contract_info.get("is_proxy", False)
+            
+            # methodMap 用于函数分析
+            method_map = contract_info.get("methodMap", {})
+            if method_map:
+                result.functions = [
+                    FunctionInfo(selector=sel, name=name)
+                    for sel, name in method_map.items()
+                ]
+        
+        # 2. 获取字节码并分析（尝试）
         bytecode = self._get_bytecode(address)
         if bytecode:
             functions, honeypot = self._analyze_bytecode(bytecode)
-            result.functions = functions
+            # 如果已有函数信息，合并补充
+            if functions and not result.functions:
+                result.functions = functions
             result.honeypot = honeypot
         else:
-            # 如果拿不到字节码，用其他方式推断
-            if result.contract.is_contract and result.contract.code_size > 0:
-                result.functions = []  # 无法获取
+            # 无法获取字节码时，基于已有信息做简化判断
+            result.honeypot = HoneyPotResult(
+                is_honeypot=False,
+                confidence=0,
+                reasons=["无法获取字节码进行深度分析"]
+            )
+            # 检查是否有transfer方法（基本ERC20标准）
+            has_transfer = any(
+                "transfer" in f.name.lower() 
+                for f in result.functions
+            )
+            if not has_transfer and result.contract.is_contract:
                 result.honeypot = HoneyPotResult(
-                    is_honeypot=False,
-                    confidence=0,
-                    reasons=["无法获取字节码进行分析"]
+                    is_honeypot=True,
+                    confidence=60,
+                    reasons=["合约未实现标准transfer方法，可能无法正常转账"]
                 )
         
-        # 3. 持有者信息
-        holders = self._get_holder_count(address)
-        result.holders_count = holders
-        
-        # 4. 24h交易量
-        volume = self._get_24h_volume(address)
-        result.volume_24h = volume
-        
-        # 5. 生成风险项
+        # 3. 生成风险项
         risks = []
         
         # 基本信息风险
@@ -570,20 +597,27 @@ class TronScanner(BaseScanner):
             risks.append(RiskItem(
                 code=1001, severity="critical", category="基本信息",
                 description="该地址不是合约",
-                evidence="code_size == 0"
+                evidence="未检测到合约信息"
             ))
         else:
             if result.contract.is_verified:
                 risks.append(RiskItem(
                     code=1004, severity="info", category="信息透明度",
                     description="合约源码已验证",
-                    evidence="verified = true"
+                    evidence="verify_status = 2"
                 ))
             else:
                 risks.append(RiskItem(
                     code=1003, severity="high", category="信息透明度",
                     description="合约源码未验证",
-                    evidence="verified = false"
+                    evidence="verify_status != 2"
+                ))
+            
+            if result.contract.is_proxy:
+                risks.append(RiskItem(
+                    code=1005, severity="medium", category="合约类型",
+                    description="代理合约，逻辑可被升级替换",
+                    evidence="is_proxy = true"
                 ))
         
         # 合约年龄风险
@@ -591,168 +625,140 @@ class TronScanner(BaseScanner):
             risks.append(self._get_age_risk(result.contract.contract_age_days))
         
         # 流动性风险
-        if volume > 1000000:
+        if result.volume_24h > 1000000:
             risks.append(RiskItem(code=2004, severity="info", category="流动性",
                                   description="24h交易量高，流动性好",
-                                  evidence=f"24h交易量: ${volume:,.0f}"))
-        elif volume > 100000:
+                                  evidence=f"24h交易量: ${result.volume_24h:,.0f}"))
+        elif result.volume_24h > 100000:
             risks.append(RiskItem(code=2003, severity="info", category="流动性",
                                   description="24h交易量良好",
-                                  evidence=f"24h交易量: ${volume:,.0f}"))
-        elif volume > 10000:
+                                  evidence=f"24h交易量: ${result.volume_24h:,.0f}"))
+        elif result.volume_24h > 10000:
             risks.append(RiskItem(code=2002, severity="medium", category="流动性",
                                   description="24h交易量较低",
-                                  evidence=f"24h交易量: ${volume:,.0f}"))
-        elif volume > 0:
+                                  evidence=f"24h交易量: ${result.volume_24h:,.0f}"))
+        elif result.volume_24h > 0:
             risks.append(RiskItem(code=2001, severity="high", category="流动性",
                                   description="24h交易量极低",
-                                  evidence=f"24h交易量: ${volume:,.0f}"))
+                                  evidence=f"24h交易量: ${result.volume_24h:,.0f}"))
+        else:
+            risks.append(RiskItem(code=2000, severity="critical", category="流动性",
+                                  description="无交易量数据",
+                                  evidence="volume24h = 0"))
         
-        # 去中心化风险
-        if holders > 100000:
-            risks.append(RiskItem(code=3005, severity="info", category="去中心化程度",
-                                  description="持有者众多，去中心化程度高",
-                                  evidence=f"持有者: {holders}"))
-        elif holders > 10000:
-            risks.append(RiskItem(code=3004, severity="info", category="去中心化程度",
-                                  description="持有者较多",
-                                  evidence=f"持有者: {holders}"))
-        elif holders > 1000:
-            risks.append(RiskItem(code=3003, severity="medium", category="去中心化程度",
-                                  description="持有者较少",
-                                  evidence=f"持有者: {holders}"))
-        elif holders > 0:
-            risks.append(RiskItem(code=3002, severity="high", category="去中心化程度",
-                                  description="持有者非常少",
-                                  evidence=f"持有者: {holders}"))
+        # 持有者风险
+        if result.holders_count > 100000:
+            risks.append(RiskItem(code=3004, severity="info", category="持有者",
+                                  description="持有者数量众多",
+                                  evidence=f"持有者: {result.holders_count:,}"))
+        elif result.holders_count > 10000:
+            risks.append(RiskItem(code=3003, severity="info", category="持有者",
+                                  description="持有者数量较多",
+                                  evidence=f"持有者: {result.holders_count:,}"))
+        elif result.holders_count > 1000:
+            risks.append(RiskItem(code=3002, severity="medium", category="持有者",
+                                  description="持有者数量偏少",
+                                  evidence=f"持有者: {result.holders_count:,}"))
+        elif result.holders_count > 0:
+            risks.append(RiskItem(code=3001, severity="high", category="持有者",
+                                  description="持有者数量很少",
+                                  evidence=f"持有者: {result.holders_count:,}"))
         
         # 蜜罐风险
         if result.honeypot.is_honeypot:
+            severity = "critical" if result.honeypot.confidence > 70 else "high"
             risks.append(RiskItem(
-                code=4007, severity="critical", category="蜜罐风险",
-                description=f"高度疑似蜜罐 (置信度: {result.honeypot.confidence}%)",
-                evidence="; ".join(result.honeypot.reasons)
-            ))
-        elif result.honeypot.confidence > 30:
-            risks.append(RiskItem(
-                code=4007, severity="medium", category="蜜罐风险",
-                description=f"存在部分蜜罐特征 (置信度: {result.honeypot.confidence}%)",
+                code=4001, severity=severity, category="蜜罐风险",
+                description="疑似蜜罐合约",
                 evidence="; ".join(result.honeypot.reasons)
             ))
         
-        # 权限风险
-        if result.honeypot.has_blacklist:
-            risks.append(RiskItem(
-                code=5001, severity="medium", category="权限控制",
-                description="存在黑名单功能",
-                evidence="检测到blacklist相关函数"
-            ))
-        
-        if result.honeypot.has_pause:
-            risks.append(RiskItem(
-                code=5002, severity="low", category="权限控制",
-                description="存在暂停功能",
-                evidence="检测到pause/unpause函数"
-            ))
-        
-        if result.honeypot.can_mint:
-            risks.append(RiskItem(
-                code=5006, severity="high", category="权限控制",
-                description="Owner可铸币，存在通胀风险",
-                evidence="检测到mint函数"
-            ))
-        
-        if result.honeypot.can_freeze:
-            risks.append(RiskItem(
-                code=5007, severity="high", category="权限控制",
-                description="存在冻结功能，可冻结用户资产",
-                evidence="检测到freeze相关函数"
-            ))
-        
-        # 可升级风险
-        if result.contract.is_proxy:
-            risks.append(RiskItem(
-                code=4004, severity="medium", category="可升级性",
-                description="可能是可升级代理合约",
-                evidence="检测到代理合约特征"
-            ))
-        
+        # 计算风险评分
+        score, level = self._calc_risk_score(risks)
+        result.risk_score = score
+        result.risk_level = level
         result.risks = risks
-        result.risk_score, result.risk_level = self._calc_risk_score(risks)
         
         return result
     
-    def _get_contract_info(self, address: str) -> Optional[dict]:
-        """获取合约信息"""
+    def _get_token_info(self, address: str) -> Optional[dict]:
+        """获取TRC20代币信息"""
+        url = f"{self.base_url}/token_trc20"
+        params = {"contract": address}
+        data = self._make_request("GET", url, params=params)
+        
+        if data:
+            tokens = data.get("trc20_tokens", [])
+            if tokens and len(tokens) > 0:
+                t = tokens[0]
+                return {
+                    "symbol": t.get("symbol", ""),
+                    "name": t.get("name", ""),
+                    "decimals": t.get("decimals", 6),
+                    "total_supply": t.get("total_supply", 0),
+                    "holders_count": t.get("holders_count", 0),
+                    "volume24h": t.get("volume24h", 0),
+                    "date_created": t.get("date_created", 0),
+                    "level": t.get("level", 0),
+                    "vip": t.get("vip", False),
+                }
+        return None
+    
+    def _get_contract_detail(self, address: str) -> Optional[dict]:
+        """获取合约详细信息"""
         url = f"{self.base_url}/contract"
         params = {"contract": address}
         data = self._make_request("GET", url, params=params)
         
-        if data and data.get("code") == 0:
+        if data and data.get("status", {}).get("code") == 0:
             contracts = data.get("data", [])
-            if contracts:
+            if contracts and len(contracts) > 0:
                 c = contracts[0]
-                return {
-                    "symbol": c.get("symbol", ""),
-                    "name": c.get("name", ""),
-                    "decimals": c.get("decimals", 18),
-                    "total_supply": str(c.get("total_supply", 0)),
-                    "code_size": c.get("byteSize", 0),
-                    "verified": c.get("verified", False),
-                    "owner_address": c.get("owner_address", ""),
-                    "date_created": c.get("date_created", 0),
-                }
+                # 只有当确实是合约时才返回（有methodMap或verify_status存在）
+                if c.get("methodMap") or c.get("verify_status", 0) > 0:
+                    return {
+                        "verify_status": c.get("verify_status", 0),
+                        "is_proxy": c.get("is_proxy", False),
+                        "proxy_implementation": c.get("proxy_implementation", ""),
+                        "date_created": c.get("date_created", 0),
+                        "methodMap": c.get("methodMap", {}),
+                        "creator": c.get("creator", {}),
+                        "trxCount": c.get("trxCount", 0),
+                        "code_size": len(c.get("methodMap", {})),
+                    }
         return None
     
     def _get_bytecode(self, address: str) -> Optional[str]:
         """获取合约字节码"""
-        # Tronscan API获取字节码
-        # 注意：这里用另一个API端点
+        # 尝试TronGrid API
         try:
-            url = f"https://api.trongrid.io/wallet/getcontract"
+            url = "https://api.trongrid.io/wallet/getcontract"
             resp = self.session.post(url, json={"address": address}, timeout=10)
             if resp.status_code == 200:
                 data = resp.json()
-                bytecode = data.get("bytecode", "")
-                if bytecode:
+                bytecode = data.get("bytecode", "") or data.get("byte_code", "")
+                if bytecode and len(bytecode) > 10:
                     return bytecode if bytecode.startswith("0x") else "0x" + bytecode
         except Exception:
             pass
+        
+        # 备用：尝试其他方式
+        # 注意：由于API限制，可能无法获取字节码，此时返回None
         return None
     
     def _get_holder_count(self, address: str) -> int:
-        """获取持有者数量"""
-        url = f"{self.base_url}/token_trc20/holders"
-        params = {
-            "contract_address": address,
-            "page": 1,
-            "page_size": 1,
-        }
-        data = self._make_request("GET", url, params=params)
-        if data and data.get("code") == 0:
-            return int(data.get("total", 0))
+        """获取持有者数量（已整合到_get_token_info，保留兼容）"""
+        token_info = self._get_token_info(address)
+        if token_info:
+            return token_info.get("holders_count", 0)
         return 0
     
     def _get_24h_volume(self, address: str) -> float:
-        """获取24h交易量（USD估算）"""
-        # 从tronscan获取交易统计
-        url = f"{self.base_url}/token_trc20/transfers"
-        params = {
-            "contract_address": address,
-            "page_size": 1,
-            "start_timestamp": int(time.time() * 1000) - 86400000,
-        }
-        data = self._make_request("GET", url, params=params)
-        if data and data.get("total", 0) > 0:
-            # 粗略估算：用交易数量 * 平均金额
-            # 实际应该获取具体交易量，这里简化处理
-            return data.get("total", 0) * 10  # 粗略估算
+        """获取24h交易量（已整合到_get_token_info，保留兼容）"""
+        token_info = self._get_token_info(address)
+        if token_info:
+            return token_info.get("volume24h", 0)
         return 0.0
-
-
-# ============================================================
-# BSC 扫描器
-# ============================================================
 
 class BscScanner(BaseScanner):
     """BSC链合约扫描器（基于公共RPC）"""
