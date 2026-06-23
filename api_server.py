@@ -1,155 +1,239 @@
 #!/usr/bin/env python3
 """
-SecureScan HTTP API - Agent-first 合约安全扫描服务
-纯标准库实现，无外部依赖，可直接部署
+SecureScan API Server
+链上合约安全扫描器 - HTTP API 服务
+使用Python标准库实现，无需额外依赖
 """
 
 import json
+import time
 import sys
-import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 # 导入扫描器
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from scanner_v40 import scan, scan_batch, SUPPORTED_CHAINS
+sys.path.insert(0, '/app/data/所有对话/主对话/contract_scanner')
+from scanner_v50 import BscScanner, TronScanner, ScanResult
 
+# 初始化扫描器
+bsc_scanner = BscScanner()
+tron_scanner = TronScanner()
 
-class ScanAPIHandler(BaseHTTPRequestHandler):
-    """API 请求处理器"""
+# 简单缓存（5分钟过期）
+cache = {}
+CACHE_TTL = 300  # 5分钟
+
+def get_scanner(chain: str):
+    """根据链名获取扫描器"""
+    chain = chain.lower()
+    if chain in ("bsc", "bnb"):
+        return bsc_scanner
+    elif chain in ("tron", "trx"):
+        return tron_scanner
+    else:
+        return None
+
+def result_to_dict(result: ScanResult) -> dict:
+    """将扫描结果转为字典"""
+    return {
+        "contract": {
+            "address": result.contract.address,
+            "chain": result.contract.chain,
+            "symbol": result.contract.symbol,
+            "name": result.contract.name,
+            "decimals": result.contract.decimals,
+            "total_supply": str(result.contract.total_supply),
+            "is_contract": result.contract.is_contract,
+            "is_verified": result.contract.is_verified,
+            "is_proxy": result.contract.is_proxy,
+            "deployer": result.contract.deployer,
+            "deploy_timestamp": result.contract.deploy_timestamp,
+            "contract_age_days": result.contract.contract_age_days,
+            "code_size": result.contract.code_size,
+        },
+        "risk": {
+            "score": result.risk_score,
+            "level": result.risk_level,
+            "summary": f"风险等级: {result.risk_level} (得分: {result.risk_score}/100)",
+        },
+        "honeypot": {
+            "is_honeypot": result.honeypot.is_honeypot if result.honeypot else False,
+            "confidence": result.honeypot.confidence if result.honeypot else 0,
+            "reasons": result.honeypot.reasons if result.honeypot else [],
+        },
+        "holders": {
+            "count": result.holders_count,
+        },
+        "volume": {
+            "24h": result.volume_24h,
+        },
+        "functions": [
+            {"selector": f.selector, "name": f.name}
+            for f in result.functions
+        ] if result.functions else [],
+        "risks": [
+            {
+                "code": r.code,
+                "severity": r.severity,
+                "category": r.category,
+                "description": r.description,
+                "evidence": r.evidence,
+            }
+            for r in result.risks
+        ],
+        "scan_time": int(time.time()),
+    }
+
+class ScanHandler(BaseHTTPRequestHandler):
+    """HTTP请求处理器"""
     
-    def _send_json(self, data: dict, status: int = 200):
-        """发送 JSON 响应"""
-        body = json.dumps(data, ensure_ascii=False).encode("utf-8")
+    def _send_json(self, data, status=200):
+        """发送JSON响应"""
+        body = json.dumps(data, ensure_ascii=False).encode('utf-8')
         self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Content-Length", str(len(body)))
-        self.send_header("X-Scanner-Version", "4.0")
-        self.send_header("X-Scanner-Type", "agent-first")
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(body)))
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(body)
     
     def do_GET(self):
+        """处理GET请求"""
         parsed = urlparse(self.path)
         path = parsed.path
         params = parse_qs(parsed.query)
         
         # 健康检查
-        if path == "/health" or path == "/api/health":
+        if path == '/api/health' or path == '/health':
             self._send_json({
                 "status": "ok",
-                "service": "securescan",
-                "version": "4.0",
-                "type": "agent-first",
-                "supported_chains": list(set(
-                    "tron" if c in ("tron", "trx") else "bsc"
-                    for c in SUPPORTED_CHAINS.keys()
-                ))
+                "timestamp": int(time.time()),
+                "version": "5.0.0",
             })
             return
         
         # 支持的链
-        elif path == "/api/chains":
+        elif path == '/api/chains':
             self._send_json({
-                "chains": [
-                    {"name": "tron", "chain_id": 195, "status": "available"},
-                    {"name": "bsc", "chain_id": 56, "status": "available"},
+                "code": 0,
+                "data": [
+                    {"id": "bsc", "name": "BNB Chain", "status": "active"},
+                    {"id": "tron", "name": "TRON", "status": "beta"},
                 ]
             })
             return
         
-        # 单个扫描
-        elif path == "/api/scan" or path == "/scan":
-            address = params.get("address", [""])[0]
-            chain = params.get("chain", ["tron"])[0]
+        # 单个合约扫描
+        elif path == '/api/scan':
+            address = params.get('address', [''])[0].strip()
+            chain = params.get('chain', ['bsc'])[0].strip()
             
             if not address:
-                self._send_json({
-                    "error": "address parameter is required",
-                    "usage": "GET /api/scan?address=CONTRACT_ADDRESS&chain=tron"
-                }, status=400)
+                self._send_json({"error": "缺少address参数"}, 400)
                 return
             
-            result = scan(address, chain)
-            if "error" in result:
-                self._send_json(result, status=400)
-            else:
-                self._send_json(result)
-            return
-        
-        # 404
-        else:
-            self._send_json({
-                "error": "not found",
-                "available_endpoints": [
-                    "GET /api/health",
-                    "GET /api/chains",
-                    "GET /api/scan?address=&chain=",
-                    "POST /api/scan/batch",
-                ]
-            }, status=404)
-    
-    def do_POST(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
-        
-        # 批量扫描
-        if path == "/api/scan/batch":
-            content_length = int(self.headers.get("Content-Length", 0))
-            if content_length == 0:
+            scanner = get_scanner(chain)
+            if not scanner:
+                self._send_json({"error": f"不支持的链: {chain}"}, 400)
+                return
+            
+            # 检查缓存
+            cache_key = f"{chain}:{address}"
+            now = int(time.time())
+            if cache_key in cache and now - cache[cache_key]["time"] < CACHE_TTL:
                 self._send_json({
-                    "error": "request body is required",
-                    "format": {"addresses": ["addr1", "addr2"], "chain": "tron"}
-                }, status=400)
+                    "code": 0,
+                    "message": "success (cached)",
+                    "data": cache[cache_key]["data"]
+                })
                 return
             
             try:
-                body = json.loads(self.rfile.read(content_length))
-            except json.JSONDecodeError:
-                self._send_json({"error": "invalid JSON"}, status=400)
+                result = scanner.scan(address)
+                data = result_to_dict(result)
+                cache[cache_key] = {"time": now, "data": data}
+                
+                self._send_json({
+                    "code": 0,
+                    "message": "success",
+                    "data": data
+                })
+            except Exception as e:
+                self._send_json({"error": f"扫描失败: {str(e)}"}, 500)
+            return
+        
+        # 批量扫描
+        elif path == '/api/batch_scan':
+            addresses_str = params.get('addresses', [''])[0].strip()
+            chain = params.get('chain', ['bsc'])[0].strip()
+            
+            if not addresses_str:
+                self._send_json({"error": "缺少addresses参数"}, 400)
                 return
             
-            addresses = body.get("addresses", [])
-            chain = body.get("chain", "tron")
-            
-            if not addresses:
-                self._send_json({"error": "addresses list is required"}, status=400)
+            addresses = [a.strip() for a in addresses_str.split(",") if a.strip()]
+            if len(addresses) > 20:
+                self._send_json({"error": "最多支持20个地址批量扫描"}, 400)
                 return
             
-            result = scan_batch(addresses, chain)
-            self._send_json(result)
+            scanner = get_scanner(chain)
+            if not scanner:
+                self._send_json({"error": f"不支持的链: {chain}"}, 400)
+                return
+            
+            results = []
+            for addr in addresses:
+                try:
+                    result = scanner.scan(addr)
+                    results.append(result_to_dict(result))
+                except Exception as e:
+                    results.append({"address": addr, "error": str(e)})
+                time.sleep(0.1)
+            
+            self._send_json({
+                "code": 0,
+                "message": "success",
+                "count": len(results),
+                "data": results
+            })
+            return
+        
+        # 首页
+        elif path == '/' or path == '':
+            self._send_json({
+                "name": "SecureScan API",
+                "version": "5.0.0",
+                "description": "链上合约安全扫描器 - Agent-first",
+                "endpoints": [
+                    {"path": "/api/scan", "method": "GET", "params": "address, chain"},
+                    {"path": "/api/batch_scan", "method": "GET", "params": "addresses, chain"},
+                    {"path": "/api/chains", "method": "GET", "params": ""},
+                    {"path": "/api/health", "method": "GET", "params": ""},
+                ]
+            })
             return
         
         else:
-            self._send_json({"error": "not found"}, status=404)
+            self._send_json({"error": "Not Found"}, 404)
     
     def log_message(self, format, *args):
-        """精简日志 - Agent不需要看人类日志"""
-        pass  # 生产环境可注释掉减少输出
+        """简化日志输出"""
+        pass  # 静默模式，不输出访问日志
 
-
-def main():
-    host = "0.0.0.0"
-    port = int(os.environ.get("PORT", 8080))
+def run_server(host='0.0.0.0', port=8080):
+    """启动服务器"""
+    print(f"🚀 SecureScan API Server v5.0 启动中...")
+    print(f"📡 监听地址: http://{host}:{port}")
+    print(f"🔗 支持链: BSC, TRON")
     
-    print(f"[SecureScan v4.0] Agent-first 合约安全扫描服务启动")
-    print(f"监听地址: {host}:{port}")
-    print(f"支持链: {', '.join(set('tron' if c in ('tron', 'trx') else 'bsc' for c in SUPPORTED_CHAINS.keys()))}")
-    print()
-    print("API 端点:")
-    print("  GET  /api/health              - 健康检查")
-    print("  GET  /api/chains              - 支持的链列表")
-    print("  GET  /api/scan?address=&chain= - 扫描单个合约")
-    print("  POST /api/scan/batch          - 批量扫描")
-    print()
+    server = HTTPServer((host, port), ScanHandler)
     
-    server = HTTPServer((host, port), ScanAPIHandler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\n服务已停止")
-        server.server_close()
-
+        print("\n👋 服务器已停止")
+        server.shutdown()
 
 if __name__ == "__main__":
-    main()
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+    run_server(port=port)
