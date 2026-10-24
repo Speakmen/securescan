@@ -1,5 +1,10 @@
 # SecureScan - Agent-first 多链智能合约安全扫描器
 
+> **2026-10-24 状态**：三链就绪 —— TRON（TronGrid，全功能）/ BSC（公共 RPC，L0）/ ETH（publicnode，L0）。
+> AGT-001 v1.2 · L0 recorder v0.2 · L1 采集器 TRON 已跑通（11 地址）。
+> 监控地址库：TRON 11 / BSC 69 / ETH 5（addresses_{tron,bsc,eth}.txt）。
+> 技能化产出：`skills/onchain-address-profile/`（零 API Key 链上地址安全画像，已打包待上架）。
+
 > 为AI Agent设计的链上安全基础设施，人类顺便能用
 
 ## 特性
