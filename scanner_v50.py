@@ -172,6 +172,7 @@ class ScanResult:
             "functions": [asdict(f) for f in self.functions],
             "holders_count": self.holders_count,
             "volume_24h": self.volume_24h,
+            "raw_data": self.raw_data,  # AGT-001 明细挂载点（2026-10-21）；默认空 dict 不影响旧消费方
         }
 
 
@@ -276,18 +277,31 @@ class BaseScanner:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (compatible; SecureScan/5.0)"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+            "Accept": "application/json,text/plain,*/*",
+            "Accept-Language": "en-US,en;q=0.9",
         })
     
     def _make_request(self, method: str, url: str, **kwargs) -> Optional[dict]:
-        """统一请求处理"""
-        try:
-            resp = self.session.request(method, url, timeout=10, **kwargs)
-            if resp.status_code == 200:
-                return resp.json()
-            return None
-        except Exception:
-            return None
+        """统一请求处理（带重试+退避，应对API限流）"""
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                resp = self.session.request(method, url, timeout=10, **kwargs)
+                if resp.status_code == 200:
+                    return resp.json()
+                # 429限流或5xx错误时重试
+                if resp.status_code in (429, 500, 502, 503, 504):
+                    if attempt < max_retries - 1:
+                        time.sleep(0.5 * (attempt + 1))
+                        continue
+                return None
+            except Exception:
+                if attempt < max_retries - 1:
+                    time.sleep(0.5 * (attempt + 1))
+                    continue
+                return None
+        return None
     
     def scan(self, address: str) -> ScanResult:
         """扫描入口，子类实现"""
@@ -578,16 +592,19 @@ class TronScanner(BaseScanner):
                 reasons=["无法获取字节码进行深度分析"]
             )
             # 检查是否有transfer方法（基本ERC20标准）
-            has_transfer = any(
-                "transfer" in f.name.lower() 
-                for f in result.functions
-            )
-            if not has_transfer and result.contract.is_contract:
-                result.honeypot = HoneyPotResult(
-                    is_honeypot=True,
-                    confidence=60,
-                    reasons=["合约未实现标准transfer方法，可能无法正常转账"]
+            # 修复：只在有函数信息(methodMap)但缺失transfer时才标记蜜罐
+            # 如果 methodMap 缺失（老合约API不返回），不做此判断，避免 false positive
+            if result.functions and result.contract.is_contract:
+                has_transfer = any(
+                    "transfer" in f.name.lower() 
+                    for f in result.functions
                 )
+                if not has_transfer:
+                    result.honeypot = HoneyPotResult(
+                        is_honeypot=True,
+                        confidence=60,
+                        reasons=["合约未实现标准transfer方法，可能无法正常转账"]
+                    )
         
         # 3. 生成风险项
         risks = []
@@ -767,10 +784,11 @@ class BscScanner(BaseScanner):
         super().__init__()
         self.rpc_url = "https://bsc.publicnode.com"
         self.etherscan_api = ""  # BSCscan被墙，暂不可用
+        self.chain_name = "bsc"  # 子类可覆盖（EthScanner 复用本类 scan 流程）
     
     def scan(self, address: str) -> ScanResult:
         result = ScanResult(
-            contract=ContractInfo(address=address, chain="bsc")
+            contract=ContractInfo(address=address, chain=self.chain_name)
         )
         
         # 1. 检查是否为合约并获取字节码
@@ -984,6 +1002,17 @@ class BscScanner(BaseScanner):
 # 对外接口
 # ============================================================
 
+
+
+class EthScanner(BscScanner):
+    """ETH 主网扫描器（v5.1 增）：复用 BSC 的 EVM 扫描流程，仅换公共 RPC 与链标识。
+    数据源 2026-10-23 实测：ethereum-rpc.publicnode.com（其余公共端点均不通/需 key）。"""
+
+    def __init__(self):
+        super().__init__()
+        self.rpc_url = "https://ethereum-rpc.publicnode.com"
+        self.chain_name = "eth"
+
 _scanners = {}
 
 def _get_scanner(chain: str) -> BaseScanner:
@@ -993,6 +1022,8 @@ def _get_scanner(chain: str) -> BaseScanner:
             _scanners[chain] = TronScanner()
         elif chain == "bsc":
             _scanners[chain] = BscScanner()
+        elif chain == "eth":
+            _scanners[chain] = EthScanner()
         else:
             raise ValueError(f"不支持的链: {chain}")
     return _scanners[chain]
@@ -1002,20 +1033,51 @@ def scan(address: str, chain: str = "tron") -> dict:
     """扫描单个合约"""
     scanner = _get_scanner(chain)
     result = scanner.scan(address)
+    # AGT-001 集成（2026-10-21）：凭据暴露面检查追加进 9xxx 风险段。
+    # 降级策略：AGT 层任何异常静默跳过，不阻塞主扫描流程。
+    try:
+        from agt_scanner import AgentCredentialScanner, extract_printable_from_hex
+        agt = AgentCredentialScanner()
+        cached_text = str(result.raw_data.get("source_code") or "")
+        cached_bc = str(result.raw_data.get("bytecode") or "")
+        scope = "text_pool"
+        if cached_text or cached_bc:
+            findings = agt.scan_text(cached_text + "\n" + "\n".join(
+                extract_printable_from_hex(cached_bc)))
+        else:
+            agt_out = agt.scan_address(address, chain)
+            findings = agt_out.get("risks", [])
+            scope = agt_out.get("scan_scope", "unavailable")
+        for f in findings:
+            result.risks.append(RiskItem(
+                code=int(f.get("code", 9000)),
+                severity=str(f.get("severity", "info")),
+                category="AGT凭据暴露",
+                description=str(f.get("description", "")),
+                evidence=f.get("evidence"),
+            ))
+        result.raw_data["agt_001"] = {"scan_scope": scope, "findings": findings}
+    except Exception:
+        pass  # AGT 降级：不影响 1xxx-8xxx 主维度结果
     return result.to_dict()
 
 
 def scan_batch(addresses: List[str], chain: str = "tron") -> dict:
-    """批量扫描合约"""
+    """批量扫描合约（带限流）"""
     scanner = _get_scanner(chain)
     results = {}
     
-    for addr in addresses:
+    for i, addr in enumerate(addresses):
         try:
             result = scanner.scan(addr)
             results[addr] = result.to_dict()
         except Exception as e:
             results[addr] = {"error": str(e)}
+        # TRON限流更严，2个请求间sleep 0.8s；BSC稍快
+        if chain == "tron" and i < len(addresses) - 1:
+            time.sleep(0.8)
+        elif i < len(addresses) - 1:
+            time.sleep(0.3)
     
     return {
         "chain": chain,

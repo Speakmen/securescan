@@ -1,0 +1,1244 @@
+{
+  "chain": "tron",
+  "count": 9,
+  "results": {
+    "TAwAg9wtQzTMFsijnSFotJrpxhMm3AqW1d": {
+      "contract": {
+        "address": "TAwAg9wtQzTMFsijnSFotJrpxhMm3AqW1d",
+        "chain": "tron",
+        "symbol": "SUNCAT",
+        "name": "SUNCAT",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 8,
+        "deployer": "TWj3MpBtX628MaFzS8mF5Xw4ChPyVTaGFV",
+        "deploy_timestamp": 1723767654,
+        "contract_age_days": 686,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 686天"
+        },
+        {
+          "code": 2001,
+          "severity": "high",
+          "category": "流动性",
+          "description": "24h交易量极低",
+          "evidence": "24h交易量: $91"
+        },
+        {
+          "code": 3003,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量较多",
+          "evidence": "持有者: 22,554"
+        }
+      ],
+      "risk_score": 10,
+      "risk_level": "medium",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "d72dd3b4",
+          "name": "setMode(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "decreaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership()",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 22554,
+      "volume_24h": 91.381088
+    },
+    "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9": {
+      "contract": {
+        "address": "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9",
+        "chain": "tron",
+        "symbol": "JST",
+        "name": "JUST",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 17,
+        "deployer": "TB19pTknBYg2Ew6g7LeEo76dsirnswxawn",
+        "deploy_timestamp": 1585900245,
+        "contract_age_days": 2281,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 2281天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $26,215,325"
+        },
+        {
+          "code": 3004,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量众多",
+          "evidence": "持有者: 441,767"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "b753a98c",
+          "name": "push(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "42966c68",
+          "name": "burn(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "c47f0027",
+          "name": "setName(string)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "40c10f19",
+          "name": "mint(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "07da68f5",
+          "name": "stop()",
+          "signature": ""
+        },
+        {
+          "selector": "bb35783b",
+          "name": "move(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "9dc29fac",
+          "name": "burn(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "daea85c5",
+          "name": "approve(address)",
+          "signature": ""
+        },
+        {
+          "selector": "13af4035",
+          "name": "setOwner(address)",
+          "signature": ""
+        },
+        {
+          "selector": "be9a6555",
+          "name": "start()",
+          "signature": ""
+        },
+        {
+          "selector": "f2d5d56b",
+          "name": "pull(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "b84c8246",
+          "name": "setSymbol(string)",
+          "signature": ""
+        },
+        {
+          "selector": "7a9e5e4b",
+          "name": "setAuthority(address)",
+          "signature": ""
+        },
+        {
+          "selector": "a0712d68",
+          "name": "mint(uint256)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 441767,
+      "volume_24h": 26215325.15
+    },
+    "THb4CqiFdwNHsWsQCs4JhzwjMWys4aqCbF": {
+      "contract": {
+        "address": "THb4CqiFdwNHsWsQCs4JhzwjMWys4aqCbF",
+        "chain": "tron",
+        "symbol": "ETH",
+        "name": "Ethereum",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 15,
+        "deployer": "TCUx7FhBnMoEt9vZBaxR9REPkSoF6a7Es4",
+        "deploy_timestamp": 1602584247,
+        "contract_age_days": 2088,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 2088天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $13,368,141,218"
+        },
+        {
+          "code": 3003,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量较多",
+          "evidence": "持有者: 27,507"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "3f4ba83a",
+          "name": "unpause()",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "cc872b66",
+          "name": "issue(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        },
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "0ecb0dee",
+          "name": "addBlackList(address,string)",
+          "signature": ""
+        },
+        {
+          "selector": "e4997dc5",
+          "name": "removeBlackList(address)",
+          "signature": ""
+        },
+        {
+          "selector": "0753c30c",
+          "name": "deprecate(address)",
+          "signature": ""
+        },
+        {
+          "selector": "d73dd623",
+          "name": "increaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "db006a75",
+          "name": "redeem(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "c0324c77",
+          "name": "setParams(uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f3bdc228",
+          "name": "destroyBlackFunds(address)",
+          "signature": ""
+        },
+        {
+          "selector": "66188463",
+          "name": "decreaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "8456cb59",
+          "name": "pause()",
+          "signature": ""
+        }
+      ],
+      "holders_count": 27507,
+      "volume_24h": 13368141218.27
+    },
+    "TMacq4TDUw5q8NFBwmbY4RLXvzvG5JTkvi": {
+      "contract": {
+        "address": "TMacq4TDUw5q8NFBwmbY4RLXvzvG5JTkvi",
+        "chain": "tron",
+        "symbol": "PePe",
+        "name": "PePe",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 8,
+        "deployer": "TGR3qVLaBVU1B7pnHrPj8mPchn5VFb8BF7",
+        "deploy_timestamp": 1727800452,
+        "contract_age_days": 639,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 639天"
+        },
+        {
+          "code": 2002,
+          "severity": "medium",
+          "category": "流动性",
+          "description": "24h交易量较低",
+          "evidence": "24h交易量: $92,951"
+        },
+        {
+          "code": 3002,
+          "severity": "medium",
+          "category": "持有者",
+          "description": "持有者数量偏少",
+          "evidence": "持有者: 8,397"
+        }
+      ],
+      "risk_score": 8,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "d72dd3b4",
+          "name": "setMode(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "decreaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership()",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 8397,
+      "volume_24h": 92950.885854
+    },
+    "TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9": {
+      "contract": {
+        "address": "TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9",
+        "chain": "tron",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "decimals": 8,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 15,
+        "deployer": "TLncy1QaX1s2nrkLBvYPk1LUpo8UFuXoNB",
+        "deploy_timestamp": 1601457735,
+        "contract_age_days": 2101,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 2101天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $39,453,354,622"
+        },
+        {
+          "code": 3003,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量较多",
+          "evidence": "持有者: 43,147"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "3f4ba83a",
+          "name": "unpause()",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "cc872b66",
+          "name": "issue(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "0ecb93c0",
+          "name": "addBlackList(address)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        },
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "e4997dc5",
+          "name": "removeBlackList(address)",
+          "signature": ""
+        },
+        {
+          "selector": "0753c30c",
+          "name": "deprecate(address)",
+          "signature": ""
+        },
+        {
+          "selector": "d73dd623",
+          "name": "increaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "db006a75",
+          "name": "redeem(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "c0324c77",
+          "name": "setParams(uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f3bdc228",
+          "name": "destroyBlackFunds(address)",
+          "signature": ""
+        },
+        {
+          "selector": "66188463",
+          "name": "decreaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "8456cb59",
+          "name": "pause()",
+          "signature": ""
+        }
+      ],
+      "holders_count": 43147,
+      "volume_24h": 39453354621.55
+    },
+    "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t": {
+      "contract": {
+        "address": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "chain": "tron",
+        "symbol": "USDT",
+        "name": "Tether USD",
+        "decimals": 6,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 15,
+        "deployer": "THPvaUhoh2Qn2y9THCZML3H815hhFhn5YC",
+        "deploy_timestamp": 1555400628,
+        "contract_age_days": 2634,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 2634天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $76,042,174,947"
+        },
+        {
+          "code": 3004,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量众多",
+          "evidence": "持有者: 74,817,890"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "3f4ba83a",
+          "name": "unpause()",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "cc872b66",
+          "name": "issue(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "0ecb93c0",
+          "name": "addBlackList(address)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        },
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "e4997dc5",
+          "name": "removeBlackList(address)",
+          "signature": ""
+        },
+        {
+          "selector": "0753c30c",
+          "name": "deprecate(address)",
+          "signature": ""
+        },
+        {
+          "selector": "d73dd623",
+          "name": "increaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "db006a75",
+          "name": "redeem(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "c0324c77",
+          "name": "setParams(uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "f3bdc228",
+          "name": "destroyBlackFunds(address)",
+          "signature": ""
+        },
+        {
+          "selector": "66188463",
+          "name": "decreaseApproval(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "8456cb59",
+          "name": "pause()",
+          "signature": ""
+        }
+      ],
+      "holders_count": 74817890,
+      "volume_24h": 76042174946.52
+    },
+    "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S": {
+      "contract": {
+        "address": "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S",
+        "chain": "tron",
+        "symbol": "SUN",
+        "name": "SUN",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 5,
+        "deployer": "TRX6Q82wMqWNbCCiLqejbZe43wk1h1zJHm",
+        "deploy_timestamp": 1621864512,
+        "contract_age_days": 1865,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 1865天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $51,372,223"
+        },
+        {
+          "code": 3003,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量较多",
+          "evidence": "持有者: 82,849"
+        }
+      ],
+      "risk_score": 0,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "decreaseAllowance(address,uint256)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 82849,
+      "volume_24h": 51372223.07
+    },
+    "TU3kjFuhtEo42tsCBtfYUAZxoqQ4yuSLQ5": {
+      "contract": {
+        "address": "TU3kjFuhtEo42tsCBtfYUAZxoqQ4yuSLQ5",
+        "chain": "tron",
+        "symbol": "sTRX",
+        "name": "Staked TRX",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 29,
+        "deployer": "TZHPiv9dNUZ9s8XLn5ihVvYc8GHFbwEAeM",
+        "deploy_timestamp": 1681446744,
+        "contract_age_days": 1175,
+        "is_verified": true,
+        "is_proxy": true,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 1005,
+          "severity": "medium",
+          "category": "合约类型",
+          "description": "代理合约，逻辑可被升级替换",
+          "evidence": "is_proxy = true"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 1175天"
+        },
+        {
+          "code": 2004,
+          "severity": "info",
+          "category": "流动性",
+          "description": "24h交易量高，流动性好",
+          "evidence": "24h交易量: $2,253,290"
+        },
+        {
+          "code": 3003,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量较多",
+          "evidence": "持有者: 14,532"
+        }
+      ],
+      "risk_score": 4,
+      "risk_level": "safe",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "42fa4d7d",
+          "name": "marketUndelegateResource(address,uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "ce373870",
+          "name": "init(address,address,address,uint256,uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "66d6a99d",
+          "name": "assetsStructure()",
+          "signature": ""
+        },
+        {
+          "selector": "1e754439",
+          "name": "setVoteOperator(address)",
+          "signature": ""
+        },
+        {
+          "selector": "d1058e59",
+          "name": "claimAll()",
+          "signature": ""
+        },
+        {
+          "selector": "c377303c",
+          "name": "unfreezeBalance()",
+          "signature": ""
+        },
+        {
+          "selector": "cb06e2db",
+          "name": "setMaxAmountForEnergy(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "d0e30db0",
+          "name": "deposit()",
+          "signature": ""
+        },
+        {
+          "selector": "e82c6b65",
+          "name": "receiveRental()",
+          "signature": ""
+        },
+        {
+          "selector": "4e71d92d",
+          "name": "claim()",
+          "signature": ""
+        },
+        {
+          "selector": "2e1a7d4d",
+          "name": "withdraw(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "929f55c4",
+          "name": "claimReserves(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "9872a882",
+          "name": "marketDelegateResource(address,uint256,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "d214a0b3",
+          "name": "freezeBalance()",
+          "signature": ""
+        },
+        {
+          "selector": "1d504dc6",
+          "name": "_become(address)",
+          "signature": ""
+        },
+        {
+          "selector": "17d0bb2a",
+          "name": "setReserveAdmin(address)",
+          "signature": ""
+        },
+        {
+          "selector": "37b23383",
+          "name": "reservePayBadDebt(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "decreaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "be3e4703",
+          "name": "setMinFreezeAmount(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "b9f412b0",
+          "name": "updateIndex()",
+          "signature": ""
+        },
+        {
+          "selector": "3af9e669",
+          "name": "balanceOfUnderlying(address)",
+          "signature": ""
+        },
+        {
+          "selector": "06d96eb2",
+          "name": "balanceStructure()",
+          "signature": ""
+        },
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "0ba7d4a7",
+          "name": "withdrawExact(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "faacab13",
+          "name": "voteSrs(address[],uint256[])",
+          "signature": ""
+        },
+        {
+          "selector": "2b28329f",
+          "name": "setReserveFactors(uint256,uint256)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 14532,
+      "volume_24h": 2253290.14
+    },
+    "TXL6rJbvmjD46zeN1JssfgxvSo99qC8MRT": {
+      "contract": {
+        "address": "TXL6rJbvmjD46zeN1JssfgxvSo99qC8MRT",
+        "chain": "tron",
+        "symbol": "SUNDOG",
+        "name": "Sundog",
+        "decimals": 18,
+        "total_supply": "0",
+        "is_contract": true,
+        "code_size": 8,
+        "deployer": "TXr7ifGXHzAerNz2go11eJQ5R2QwcRJkAf",
+        "deploy_timestamp": 1723761237,
+        "contract_age_days": 686,
+        "is_verified": true,
+        "is_proxy": false,
+        "implementation": ""
+      },
+      "risks": [
+        {
+          "code": 1004,
+          "severity": "info",
+          "category": "信息透明度",
+          "description": "合约源码已验证",
+          "evidence": "verify_status = 2"
+        },
+        {
+          "code": 8004,
+          "severity": "info",
+          "category": "合约年龄",
+          "description": "合约部署超过1个月，相对成熟",
+          "evidence": "合约年龄: 686天"
+        },
+        {
+          "code": 2001,
+          "severity": "high",
+          "category": "流动性",
+          "description": "24h交易量极低",
+          "evidence": "24h交易量: $5,595"
+        },
+        {
+          "code": 3004,
+          "severity": "info",
+          "category": "持有者",
+          "description": "持有者数量众多",
+          "evidence": "持有者: 516,391"
+        }
+      ],
+      "risk_score": 10,
+      "risk_level": "medium",
+      "honeypot": {
+        "is_honeypot": false,
+        "confidence": 0,
+        "buy_tax": 0.0,
+        "sell_tax": 0.0,
+        "transfer_tax": 0.0,
+        "has_blacklist": false,
+        "has_whitelist": false,
+        "has_pause": false,
+        "can_freeze": false,
+        "can_mint": false,
+        "owner_centralized": false,
+        "reasons": [
+          "无法获取字节码进行深度分析"
+        ]
+      },
+      "functions": [
+        {
+          "selector": "23b872dd",
+          "name": "transferFrom(address,address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a9059cbb",
+          "name": "transfer(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "095ea7b3",
+          "name": "approve(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "39509351",
+          "name": "increaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "d72dd3b4",
+          "name": "setMode(uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "a457c2d7",
+          "name": "decreaseAllowance(address,uint256)",
+          "signature": ""
+        },
+        {
+          "selector": "715018a6",
+          "name": "renounceOwnership()",
+          "signature": ""
+        },
+        {
+          "selector": "f2fde38b",
+          "name": "transferOwnership(address)",
+          "signature": ""
+        }
+      ],
+      "holders_count": 516391,
+      "volume_24h": 5595.073996
+    }
+  },
+  "timestamp": 1783044096
+}
